@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ShaftMiner : BaseMiner
 {
+    public Shaft CurrentShaft { get; set; }
+
     private int walkAnimation = Animator.StringToHash("Walk");
     private int miningAnimation = Animator.StringToHash("Mine");
 
