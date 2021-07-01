@@ -47,3 +47,6 @@ TagManager:
   - name: Miner
     uniqueID: 1427429285
     locked: 0
+  - name: UI
+    uniqueID: 2906163683
+    locked: 0

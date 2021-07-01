@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class ShaftUI : MonoBehaviour
 {
+    public static Action OnUpgradeRequest;
     [SerializeField] private TextMeshProUGUI depositGold;
     [SerializeField] private TextMeshProUGUI shaftID;
     [SerializeField] private TextMeshProUGUI shaftLevel;
@@ -43,5 +45,10 @@ public class ShaftUI : MonoBehaviour
     public void SetNewShaftCost(float newCost)
     {
         newShaftCost.text = newCost.ToString();
+    }
+
+    public void OpenUpgradeContainer()
+    {
+        OnUpgradeRequest?.Invoke();
     }
 }
