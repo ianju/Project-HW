@@ -23,6 +23,7 @@ public class BaseMiner : MonoBehaviour,IClickable
     public float CurrentGold { get; set; }
     public float CollectCapacity { get; set; }
     public float CollectPerSecond { get; set; }
+    public bool MinerClicked { get; set; }
     protected Animator _animator;
 
     private void Start()

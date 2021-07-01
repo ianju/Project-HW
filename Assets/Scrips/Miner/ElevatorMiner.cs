@@ -69,7 +69,11 @@ public class ElevatorMiner : BaseMiner
 
     private void OnMouseDown()
     {
-        OnClick();
+        if (!MinerClicked)
+        {
+            OnClick();
+            MinerClicked = true;
+        }
     }
     public override void OnClick()
     {

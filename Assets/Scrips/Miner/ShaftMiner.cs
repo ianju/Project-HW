@@ -8,7 +8,7 @@ public class ShaftMiner : BaseMiner
     private int walkAnimation = Animator.StringToHash("Walk");
     private int miningAnimation = Animator.StringToHash("Mine");
 
-    public bool MinerClicked { get; set; }
+    
 
     protected override void CollectGold()
     {

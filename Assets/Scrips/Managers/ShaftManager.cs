@@ -19,15 +19,6 @@ public class ShaftManager : Singleton<ShaftManager>
         ShaftCost = newShaftCost;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.N)) 
-        {
-            AddShaft();
-        }
-    }
-
     public void AddShaft()
     {
         Transform lastShaft = shafts[_currentShaftIndex].transform;
