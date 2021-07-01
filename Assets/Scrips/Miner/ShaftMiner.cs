@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class ShaftMiner : BaseMiner
 {
-    public Shaft CurrentShaft { get; set; }
 
     private int walkAnimation = Animator.StringToHash("Walk");
     private int miningAnimation = Animator.StringToHash("Mine");
+
+    public bool MinerClicked { get; set; }
 
     protected override void CollectGold()
     {
@@ -18,12 +19,11 @@ public class ShaftMiner : BaseMiner
 
     protected override void DepositGold()
     {
-        ShaftDeposit.DepositGold(CurrentGold);
+        CurrentShaft.ShaftDeposit.DepositGold(CurrentGold);
         CurrentGold = 0;
         ChangeGoal();
-        Vector3 vc = new Vector3(MiningLocation.position.x, transform.position.y);
         RotateMiner(1);
-        MoveMiner(vc);
+        MoveMiner(MiningLocation);
     }
 
     protected override IEnumerator IECollect(float gold, float collectTime)
@@ -31,14 +31,27 @@ public class ShaftMiner : BaseMiner
         yield return new WaitForSeconds(collectTime);
         CurrentGold = gold;
         ChangeGoal();
-        Vector3 vc = new Vector3(DepositLocation.position.x, transform.position.y);
         RotateMiner(-1);
-        MoveMiner(vc);
+        MoveMiner(DepositLocation);
     }
 
     protected override void MoveMiner(Vector3 newPosition)
     {
         base.MoveMiner(newPosition);
         _animator.SetTrigger(walkAnimation);
+    }
+
+    private void OnMouseDown()
+    {
+        if (!MinerClicked) 
+        {
+            OnClick();
+            MinerClicked = true  ;
+        }
+    }
+
+    public override void OnClick()
+    {
+        MoveMiner(MiningLocation);
     }
 }

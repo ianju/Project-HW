@@ -3,20 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class BaseMiner : MonoBehaviour
+public class BaseMiner : MonoBehaviour,IClickable
 {
-    [SerializeField] protected Transform MiningLocation;
-    [SerializeField] protected Transform DepositLocation;
-    [SerializeField] protected float MoveSpeed;
-    [SerializeField] protected Deposit ShaftDeposit;
+    // [SerializeField] protected Transform MiningLocation;
+    // [SerializeField] protected Transform DepositLocation;
 
+    // [SerializeField] protected Deposit ShaftDeposit;
+    public Shaft CurrentShaft { get; set; }
 
     [Header("Initial Values")]
     [SerializeField] private float InitialCollectCapacity;
     [SerializeField] private float InitialCollectPerSecond;
+    [SerializeField] protected float MoveSpeed;
+
+    public Vector3 DepositLocation => new Vector3(CurrentShaft._DepositLocation.position.x, transform.position.y);
+    public Vector3 MiningLocation => new Vector3(CurrentShaft._MiningLocation.position.x, transform.position.y);
 
     public bool IsTimeToCollect { get; set; }
-    public bool IsRunning { get; set; }
     public float CurrentGold { get; set; }
     public float CollectCapacity { get; set; }
     public float CollectPerSecond { get; set; }
@@ -29,9 +32,15 @@ public class BaseMiner : MonoBehaviour
         CollectCapacity = InitialCollectCapacity;
         CollectPerSecond = InitialCollectPerSecond;
     }
+
+    public virtual void OnClick()
+    {
+        
+    }
+
     protected virtual void MoveMiner(Vector3 newPosition)
     {
-        transform.DOMove(newPosition, MoveSpeed)
+        transform.DOMove(newPosition, MoveSpeed)  
             .SetEase(Ease.Linear)
             .OnComplete(() => {
                 if (IsTimeToCollect)
@@ -44,25 +53,6 @@ public class BaseMiner : MonoBehaviour
                 }
             })
             .Play();
-        IsRunning = true;
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        Vector3 vc = new Vector3(MiningLocation.position.x, transform.position.y);
-        if (!IsRunning) {
-            if (MiningLocation != null)
-            {
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    MoveMiner(vc);
-
-                }
-            }
-        }
-
     }
 
     protected virtual void CollectGold()
@@ -83,11 +73,12 @@ public class BaseMiner : MonoBehaviour
     {
         if (direction == 1)
         {
-            transform.localScale = new Vector3(1, 1, 1);
+
+            transform.localScale = new Vector3(1, transform.localScale.y,transform.localScale.z);
         }
         else
         {
-            transform.localScale = new Vector3(-1, 1, 1);    
+            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);    
         }
     }
 
@@ -95,4 +86,11 @@ public class BaseMiner : MonoBehaviour
     {
         yield return null;
     }
+
+    protected virtual IEnumerator IEDeposit(float depositTime)
+    {
+        yield return null;
+    }
+
+
 }

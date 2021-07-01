@@ -17,6 +17,9 @@ TextureImporter:
   - first:
       213: -6024253113604010246
     second: suidao_4
+  - first:
+      213: -8159024145078246568
+    second: suidao_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -217,10 +220,10 @@ TextureImporter:
       name: suidao_4
       rect:
         serializedVersion: 2
-        x: 1657
-        y: 199
-        width: 460
-        height: 481
+        x: 1087
+        y: 422
+        width: 143
+        height: 143
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -230,6 +233,27 @@ TextureImporter:
       bones: []
       spriteID: afe879606bd856ca0800000000000000
       internalID: -6024253113604010246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: suidao_5
+      rect:
+        serializedVersion: 2
+        x: 1652
+        y: 198
+        width: 468
+        height: 483
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 853a6c6b4c255ce80800000000000000
+      internalID: -8159024145078246568
       vertices: []
       indices: 
       edges: []
