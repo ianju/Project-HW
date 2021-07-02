@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 938d50e04a719b242b124415ee1293ac, type: 3}
+  m_Name: ShaftMinerInfo
+  m_EditorClassIdentifier: 
+  PanelTitle: "\u77FF\u9053"
+  PanelMinerIcon: {fileID: -36922474833775500, guid: 2d83acc42c26b5c48b6a55daeb38e990, type: 3}
+  Stat1Title: "\u77FF\u5DE5\u6570\u91CF"
+  Stat2Title: "\u884C\u8D70\u901F\u5EA6"
+  Stat3Title: "\u6316\u77FF\u901F\u5EA6"
+  Stat4Title: "\u643A\u5E26\u4E0A\u9650"
+  Stat1Icon: {fileID: 1161201145128540330, guid: b207cb8cb80bf324984205c985c28789, type: 3}
+  Stat2Icon: {fileID: 1202984965197363600, guid: b207cb8cb80bf324984205c985c28789, type: 3}
+  Stat3Icon: {fileID: 2130535880278150251, guid: b207cb8cb80bf324984205c985c28789, type: 3}
+  Stat4Icon: {fileID: 184950751378207249, guid: b207cb8cb80bf324984205c985c28789, type: 3}

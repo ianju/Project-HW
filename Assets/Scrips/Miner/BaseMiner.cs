@@ -24,14 +24,21 @@ public class BaseMiner : MonoBehaviour,IClickable
     public float CollectCapacity { get; set; }
     public float CollectPerSecond { get; set; }
     public bool MinerClicked { get; set; }
+    public float _MoveSpeed { get; set; }
+
+    private float FakeDistance = 9;
     protected Animator _animator;
+    private void Awake()
+    {
+        CollectCapacity = InitialCollectCapacity;
+        CollectPerSecond = InitialCollectPerSecond;
+        _MoveSpeed = MoveSpeed;
+    }
 
     private void Start()
     {
         _animator = GetComponent<Animator>();
         IsTimeToCollect = true;
-        CollectCapacity = InitialCollectCapacity;
-        CollectPerSecond = InitialCollectPerSecond;
     }
 
     public virtual void OnClick()
@@ -41,7 +48,7 @@ public class BaseMiner : MonoBehaviour,IClickable
 
     protected virtual void MoveMiner(Vector3 newPosition)
     {
-        transform.DOMove(newPosition, MoveSpeed)  
+        transform.DOMove(newPosition, FakeDistance/_MoveSpeed)  
             .SetEase(Ease.Linear)
             .OnComplete(() => {
                 if (IsTimeToCollect)

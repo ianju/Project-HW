@@ -352,7 +352,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InitialCollectCapacity: 1000
   InitialCollectPerSecond: 200
-  MoveSpeed: 2
+  MoveSpeed: 6
 --- !u!1 &3280094466145239402
 GameObject:
   m_ObjectHideFlags: 0
