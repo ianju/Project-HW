@@ -2,11 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Locations
+{
+    Shaft,
+    Elevator,
+    Warehouse
+}
+
 [CreateAssetMenu(menuName ="Upgrade Info")]
 public class UpgradePanelInfo : ScriptableObject
 {
     public string PanelTitle;
     public Sprite PanelMinerIcon;
+    public Locations location;
 
     [Header("Stat Title")]
     public string Stat1Title;

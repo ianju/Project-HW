@@ -6,7 +6,10 @@ public class Elevator : MonoBehaviour
 {
     [SerializeField] private Transform depositLocation;
     [SerializeField] private Deposit elevatorDeposit;
+    [SerializeField] private ElevatorMiner miner;
 
+    
     public Deposit ElevatorDeposit => elevatorDeposit;
     public Transform DepositLocation => depositLocation;
+    public ElevatorMiner Miner => miner;
 }

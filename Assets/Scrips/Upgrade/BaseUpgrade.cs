@@ -27,6 +27,8 @@ public class BaseUpgrade : MonoBehaviour
     public float MoveSpeedMultiplier => moveSpeedMultiplier;
 
     protected Shaft _shaft;
+    protected Elevator _elevator;
+    protected Warehouse _warehouse;
 
     private int _currentNextBoostLevel=1;
     private int _nextBoostResetValue = 1;
@@ -34,6 +36,8 @@ public class BaseUpgrade : MonoBehaviour
     private void Start()
     {
         _shaft = GetComponent<Shaft>();
+        _elevator = GetComponent<Elevator>();
+        _warehouse = GetComponent<Warehouse>();
         CurrentLevel = 1;
         UpgradeCost = initialUpgradeCost;
         BoostLevel = 10;
@@ -46,13 +50,13 @@ public class BaseUpgrade : MonoBehaviour
         {
             for (int i = 0; i < amount; i++)
             {
-                UPgradeCompleted();
+                UpgradeCompleted();
                 ExecuteUpgrade();
             }
         }
     }
 
-    private void UPgradeCompleted()
+    private void UpgradeCompleted()
     {
         CurrentLevel++;
         GoldManager.Instance.RemoveGold(UpgradeCost);
