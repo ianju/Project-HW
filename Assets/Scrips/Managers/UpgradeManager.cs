@@ -16,6 +16,12 @@ public class UpgradeManager : Singleton<UpgradeManager>
     [SerializeField] private TextMeshProUGUI upgradeCost;
     [SerializeField] private Image progressBar;
 
+    [Header("Upgrade Buttons")]
+    [SerializeField] private  GameObject[] upgradeButtons;
+    [SerializeField] private Color buttonDisableColor;
+    [SerializeField] private Color buttonEnableColor;
+
+
     [Header("Stat Title")]
     [SerializeField] private TextMeshProUGUI stat1Title;
     [SerializeField] private TextMeshProUGUI stat2Title;
@@ -43,8 +49,12 @@ public class UpgradeManager : Singleton<UpgradeManager>
     [Header("Panel Info")]
     [SerializeField] private UpgradePanelInfo ShaftMinerInfo;
 
+    public int UpgradeAmount { get; set; }
+
     private Shaft _currentShaft;
     private ShaftUpgrade _currentShaftUpgrade;
+    private int _currentActiveButton;
+
 
     private void ShaftUpgradeRequest(Shaft shaft,ShaftUpgrade shaftUpgrade)
     {
@@ -80,13 +90,15 @@ public class UpgradeManager : Singleton<UpgradeManager>
     { 
         if (GoldManager.Instance.CurrentGold >= _currentShaftUpgrade.UpgradeCost)
         {
-            _currentShaftUpgrade.Upgrade(1);
+            _currentShaftUpgrade.Upgrade(UpgradeAmount);
             UpdateShaftPanelValues();
+            RefreshUpgradeAmount();
         }
     }
 
     public void OpenCloseUpgradeContainer(bool status)
     {
+        UpgradeX1();
         upgradeContainer.SetActive(status);
     }
     private void UpdateUpgradeInfo()
@@ -104,6 +116,105 @@ public class UpgradeManager : Singleton<UpgradeManager>
         stat4Icon.sprite = ShaftMinerInfo.Stat4Icon;
     }
 
+    #region Upgrade Buttons
+    public void UpgradeX1()
+    {
+        ActivateButton(0);
+        UpgradeAmount = CanUpgradeManyTimes(1, _currentShaftUpgrade) ? 1 : 0;
+        upgradeCost.text = GetUpgradeCost(1, _currentShaftUpgrade).ToString();
+    }
+    private int CalculateUpgradeCount(BaseUpgrade upgrade)
+    {
+        if (upgrade == null) return 0;
+        int count = 0;
+        float currentGold = GoldManager.Instance.CurrentGold;
+        float currentUpgradeCost = upgrade.UpgradeCost;
+        if (GoldManager.Instance.CurrentGold >= currentUpgradeCost)
+        {
+            for (float i = currentGold; i >=0; i-=currentUpgradeCost)
+            {
+                count++;
+                currentUpgradeCost *= upgrade.UpgradeCostMultiplier;
+            }
+        }
+        return count;
+    }
+
+    private bool CanUpgradeManyTimes(int upgradeAmount,BaseUpgrade upgrade)
+    {
+        int count = CalculateUpgradeCount(upgrade);
+        if (count>=upgradeAmount)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public void UpgradeX10()
+    {
+        ActivateButton(1);
+        UpgradeAmount = CanUpgradeManyTimes(10, _currentShaftUpgrade) ? 10 : 0;
+        upgradeCost.text = GetUpgradeCost(10, _currentShaftUpgrade).ToString();
+    }
+    public void UpgradeX50()
+    {
+        ActivateButton(2);
+        UpgradeAmount = CanUpgradeManyTimes(50, _currentShaftUpgrade) ? 50 : 0;
+        upgradeCost.text = GetUpgradeCost(50, _currentShaftUpgrade).ToString();
+
+    }
+    public void UpgradeMax()
+    {
+        ActivateButton(3);
+        int count = CalculateUpgradeCount(_currentShaftUpgrade);
+        UpgradeAmount = count;
+        upgradeCost.text = GetUpgradeCost(count, _currentShaftUpgrade).ToString();
+
+    }
+
+    private void ActivateButton(int buttonIndex)
+    {
+        for (int i = 0; i < upgradeButtons.Length; i++)
+        {
+            upgradeButtons[i].GetComponent<Image>().color = buttonDisableColor;
+        }
+        _currentActiveButton = buttonIndex;
+        upgradeButtons[buttonIndex].GetComponent<Image>().color = buttonEnableColor;
+        upgradeButtons[buttonIndex].transform.DOPunchPosition(transform.localPosition + new Vector3(0f, -5f, 0f), 0.5f).Play();
+    }
+
+    private float GetUpgradeCost(int amount, BaseUpgrade upgrade)
+    {
+        float cost = 0f;
+        float currentUpgradeCost = upgrade.UpgradeCost;
+        for (int i = 0; i < amount; i++)
+        {
+            cost += currentUpgradeCost;
+            currentUpgradeCost *= upgrade.UpgradeCostMultiplier;
+        }
+        return cost;
+    }
+
+    private void RefreshUpgradeAmount()
+    {
+        switch (_currentActiveButton)
+        {
+            case 0:
+                UpgradeX1();
+                break;
+            case 1:
+                UpgradeX10();
+                break;
+            case 2:
+                UpgradeX50();
+                break;
+            case 3:
+                UpgradeMax();
+                break;
+        }
+    }
+    #endregion
+
     private void OnEnable()
     {
         ShaftUI.OnUpgradeRequest += ShaftUpgradeRequest;
@@ -113,4 +224,5 @@ public class UpgradeManager : Singleton<UpgradeManager>
     {
         ShaftUI.OnUpgradeRequest -= ShaftUpgradeRequest;
     }
+
 }

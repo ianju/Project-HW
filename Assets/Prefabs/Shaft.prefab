@@ -1273,7 +1273,7 @@ MonoBehaviour:
   collectPerSecondMultiplier: 2
   moveSpeedMultiplier: 1.25
   initialUpgradeCost: 1
-  upgradeCostMultiplier: 1.1
+  upgradeCostMultiplier: 2
 --- !u!1 &102186888388862614
 GameObject:
   m_ObjectHideFlags: 0

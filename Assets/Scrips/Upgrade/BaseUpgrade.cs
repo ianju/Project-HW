@@ -16,10 +16,12 @@ public class BaseUpgrade : MonoBehaviour
     [SerializeField] private float initialUpgradeCost = 600;
     [SerializeField] private float upgradeCostMultiplier = 2;
 
+    
     public int CurrentLevel { get; set; }
     public float UpgradeCost { get; set; }
     public int BoostLevel { get; set; }
 
+    public float UpgradeCostMultiplier => upgradeCostMultiplier;
     public float CollectCapacityMultiplier => collectCapacityMultiplier;
     public float CollectPerSecondMutiplier => collectPerSecondMultiplier;
     public float MoveSpeedMultiplier => moveSpeedMultiplier;
