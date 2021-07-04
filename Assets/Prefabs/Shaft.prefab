@@ -1271,9 +1271,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectCapacityMultiplier: 2
   collectPerSecondMultiplier: 2
-  moveSpeedMultiplier: 1.25
+  moveSpeedMultiplier: 1.1
   initialUpgradeCost: 1
-  upgradeCostMultiplier: 2
+  upgradeCostMultiplier: 1.1
 --- !u!1 &102186888388862614
 GameObject:
   m_ObjectHideFlags: 0
