@@ -26,6 +26,8 @@ public class BaseMiner : MonoBehaviour,IClickable
     public bool MinerClicked { get; set; }
     public float _MoveSpeed { get; set; }
 
+    public bool Boosted { get; set; }
+
     private float FakeDistance = 9;
     protected Animator _animator;
     private void Awake()
@@ -33,6 +35,7 @@ public class BaseMiner : MonoBehaviour,IClickable
         CollectCapacity = InitialCollectCapacity;
         CollectPerSecond = InitialCollectPerSecond;
         _MoveSpeed = MoveSpeed;
+        Boosted = false;
     }
 
     private void Start()
