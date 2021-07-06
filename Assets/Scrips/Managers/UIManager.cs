@@ -8,6 +8,6 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private TextMeshProUGUI totalGoldText;
     private void Update()
     {
-        totalGoldText.text = GoldManager.Instance.CurrentGold.ToString() ;
+        totalGoldText.text = GoldManager.Instance.CurrentGold.ToCurrency() ;
     }
 }

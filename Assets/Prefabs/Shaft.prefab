@@ -1238,7 +1238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MinerPrefab: {fileID: 2262958682833525753, guid: ac6b9c68c2019c8448f5a5f3497681c3, type: 3}
   DepositPrefab: {fileID: 7806763011807153177, guid: 63dfa3d94a847754daca21095ff59e79, type: 3}
-  shaftManagerPrefab: {fileID: 3700476599093562862, guid: 2a41e3f1ebe58c146b5d705f1fecb49c, type: 3}
+  shaftManagerPrefab: {fileID: 6051565952429264577, guid: 2a41e3f1ebe58c146b5d705f1fecb49c, type: 3}
   shaftManagerPosition: {fileID: 5027681659871836197}
   MiningLocation: {fileID: 102186886313690017}
   DepositLocation: {fileID: 102186886886768853}
@@ -1421,7 +1421,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5027681659871836197}
   m_Layer: 0
-  m_Name: ManagerLocation
+  m_Name: ShaftManagerLocation
   m_TagString: Untagged
   m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1435,7 +1435,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1715971244780380738}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.27, y: -0.1, z: 0}
+  m_LocalPosition: {x: -0.27, y: -0.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 102186888382187948}

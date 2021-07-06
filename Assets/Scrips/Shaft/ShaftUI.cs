@@ -24,7 +24,7 @@ public class ShaftUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        depositGold.text = _shaft.ShaftDeposit.CurrentGold.ToString();
+        depositGold.text = _shaft.ShaftDeposit.CurrentGold.ToCurrency();
     }
 
     public void AddShaft()

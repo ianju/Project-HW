@@ -94,7 +94,7 @@ public class UpgradeManager : Singleton<UpgradeManager>
     }
     private void UpdatePanelValues()
     {
-        upgradeCost.text = _currentUpgrade.UpgradeCost.ToString();
+        upgradeCost.text = _currentUpgrade.UpgradeCost.ToCurrency();
         level.text = $"level {_currentUpgrade.CurrentLevel.ToString()}";
         progressBar.DOFillAmount(_currentUpgrade.CurrentLevel % 10 * 0.1f, 0.5f).Play();//GetNextBoostProgress()
         nextBoost.text = $"下次人数增加 - {_currentUpgrade.BoostLevel}";
@@ -171,7 +171,7 @@ public class UpgradeManager : Singleton<UpgradeManager>
     {
         ActivateButton(0,animateButton);
         UpgradeAmount = CanUpgradeManyTimes(1, _currentUpgrade) ? 1 : 0;
-        upgradeCost.text = GetUpgradeCost(1, _currentUpgrade).ToString();
+        upgradeCost.text = GetUpgradeCost(1, _currentUpgrade).ToCurrency();
     }
     private int CalculateUpgradeCount(BaseUpgrade upgrade)
     {
@@ -204,13 +204,13 @@ public class UpgradeManager : Singleton<UpgradeManager>
     {
         ActivateButton(1, animateButton);
         UpgradeAmount = CanUpgradeManyTimes(10, _currentUpgrade) ? 10 : 0;
-        upgradeCost.text = GetUpgradeCost(10, _currentUpgrade).ToString();
+        upgradeCost.text = GetUpgradeCost(10, _currentUpgrade).ToCurrency();
     }
     public void UpgradeX50(bool animateButton)
     {
         ActivateButton(2, animateButton);
         UpgradeAmount = CanUpgradeManyTimes(50, _currentUpgrade) ? 50 : 0;
-        upgradeCost.text = GetUpgradeCost(50, _currentUpgrade).ToString();
+        upgradeCost.text = GetUpgradeCost(50, _currentUpgrade).ToCurrency();
 
     }
     public void UpgradeMax(bool animateButton)
@@ -218,7 +218,7 @@ public class UpgradeManager : Singleton<UpgradeManager>
         ActivateButton(3, animateButton);
         int count = CalculateUpgradeCount(_currentUpgrade);
         UpgradeAmount = count;
-        upgradeCost.text = GetUpgradeCost(count, _currentUpgrade).ToString();
+        upgradeCost.text = GetUpgradeCost(count, _currentUpgrade).ToCurrency();
 
     }
 

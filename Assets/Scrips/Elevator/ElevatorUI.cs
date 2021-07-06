@@ -24,7 +24,7 @@ public class ElevatorUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        elevatorDepositGoldText.text = _elevator.ElevatorDeposit.CurrentGold.ToString();
+        elevatorDepositGoldText.text = _elevator.ElevatorDeposit.CurrentGold.ToCurrency();
     }
 
     public void OpenElevatorUpgrade()
